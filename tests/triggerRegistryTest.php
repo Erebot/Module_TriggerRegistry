@@ -16,24 +16,37 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+if (!defined('__DIR__')) {
+  class __FILE_CLASS__ {
+    function  __toString() {
+      $X = debug_backtrace();
+      return dirname($X[1]['file']);
+    }
+  }
+  define('__DIR__', new __FILE_CLASS__);
+} 
+
+include_once(__DIR__.'/testenv/coreStub.php');
+include_once(__DIR__.'/testenv/serverConfigStub.php');
+include_once(__DIR__.'/testenv/connectionStub.php');
+include_once(__DIR__.'/testenv/i18nStub.php');
+
+include_once(__DIR__.'/../TriggerRegistry.php');
+
 class   TriggerRegistryTest
 extends PHPUnit_Framework_TestCase
 {
     public function __construct()
     {
-        $bot                =   new ErebotStubbedCore();
-        $config             =   ErebotStubbedServerConfig::create(array(
-                                    'TriggerRegistry' => NULL,
-                                ));
-        $this->connection   =   new ErebotStubbedConnection($bot, $config);
-
-        $this->module       = $this->connection->getModule('TriggerRegistry',
-                                ErebotStubbedConnection::MODULE_BY_NAME);
+        $this->module = new ErebotModule_TriggerRegistry();
+        $this->module->reload(
+            $this->module->RELOAD_ALL |
+            $this->module->RELOAD_INIT
+        );
     }
 
     public function __destruct()
     {
-        unset($this->connection);
         unset($this->module);
     }
 
@@ -63,7 +76,7 @@ extends PHPUnit_Framework_TestCase
 
     public function testRegisterGeneralTrigger()
     {
-        $any = ErebotUtils::getVStatic($this->module, 'MATCH_ANY');
+        $any = '*';
         $token1 = $this->module->registerTriggers('test', $any);
         $this->assertNotSame(NULL, $token1);
 
