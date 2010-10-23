@@ -26,28 +26,23 @@ if (!defined('__DIR__')) {
   define('__DIR__', new __FILE_CLASS__);
 } 
 
-include_once(__DIR__.'/testenv/coreStub.php');
-include_once(__DIR__.'/testenv/serverConfigStub.php');
-include_once(__DIR__.'/testenv/connectionStub.php');
-include_once(__DIR__.'/testenv/i18nStub.php');
 
+include_once(__DIR__.'/testenv/bootstrap.php');
 include_once(__DIR__.'/../TriggerRegistry.php');
 
 class   TriggerRegistryTest
-extends PHPUnit_Framework_TestCase
+extends ErebotModuleTestCase
 {
-    public function __construct()
+    public function setUp()
     {
-        $this->module = new ErebotModule_TriggerRegistry();
-        $this->module->reload(
-            $this->module->RELOAD_ALL |
-            $this->module->RELOAD_INIT
-        );
+        parent::setUp();
+        $this->_module = new ErebotModule_TriggerRegistry($this->_connection, NULL);
     }
 
-    public function __destruct()
+    public function tearDown()
     {
-        unset($this->module);
+        parent::tearDown();
+        unset($this->_module);
     }
 
     /**
@@ -55,7 +50,7 @@ extends PHPUnit_Framework_TestCase
      */
     public function testRegisterWithInvalidValueForChannel()
     {
-        $this->module->registerTriggers('test', NULL);
+        $this->_module->registerTriggers('test', NULL);
     }
 
     /**
@@ -63,7 +58,7 @@ extends PHPUnit_Framework_TestCase
      */
     public function testUnregisterWithInvalidValueForChannel()
     {
-        $this->module->freeTriggers(NULL);
+        $this->_module->freeTriggers(NULL);
     }
 
     /**
@@ -71,21 +66,20 @@ extends PHPUnit_Framework_TestCase
      */
     public function testUnregisterInexistentTrigger()
     {
-        $this->module->freeTriggers('inexistent trigger');
+        $this->_module->freeTriggers('inexistent trigger');
     }
 
     public function testRegisterGeneralTrigger()
     {
         $any = '*';
-        $token1 = $this->module->registerTriggers('test', $any);
+        $token1 = $this->_module->registerTriggers('test', $any);
         $this->assertNotSame(NULL, $token1);
 
-        $token2 = $this->module->registerTriggers('test', $any);
+        $token2 = $this->_module->registerTriggers('test', $any);
         $this->assertSame(NULL, $token2);
 
-        $this->assertContains('test', $this->module->getTriggers($token1));
-        $this->module->freeTriggers($token1);
+        $this->assertContains('test', $this->_module->getTriggers($token1));
+        $this->_module->freeTriggers($token1);
     }
 }
 
-?>
