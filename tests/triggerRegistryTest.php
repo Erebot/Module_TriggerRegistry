@@ -28,7 +28,7 @@ if (!defined('__DIR__')) {
 
 set_include_path(__DIR__.'/Core'.PATH_SEPARATOR.get_include_path());
 include_once(__DIR__.'/testenv/bootstrap.php');
-include_once(__DIR__.'/../TriggerRegistry.php');
+include_once(__DIR__.'/../src/Erebot/TriggerRegistry.php');
 
 class   TriggerRegistryTest
 extends ErebotModuleTestCase
@@ -37,6 +37,7 @@ extends ErebotModuleTestCase
     {
         parent::setUp();
         $this->_module = new ErebotModule_TriggerRegistry($this->_connection, NULL);
+        $this->_module->reload($this->_module->RELOAD_MEMBERS);
     }
 
     public function tearDown()
@@ -71,15 +72,65 @@ extends ErebotModuleTestCase
 
     public function testRegisterGeneralTrigger()
     {
-        $any = '*';
-        $token1 = $this->_module->registerTriggers('test', $any);
+        $chan = '*'; // Any chan.
+        $token1 = $this->_module->registerTriggers(array('foo', 'bar'), $chan);
         $this->assertNotSame(NULL, $token1);
 
-        $token2 = $this->_module->registerTriggers('test', $any);
+        $token2 = $this->_module->registerTriggers('foo', $chan);
         $this->assertSame(NULL, $token2);
 
-        $this->assertContains('test', $this->_module->getTriggers($token1));
+        $this->assertContains('foo', $this->_module->getTriggers($token1));
+        $this->assertContains('bar', $this->_module->getTriggers($token1));
+        $this->assertEquals(
+            array(array('foo', 'bar')),
+            $this->_module->getChanTriggers($chan)
+        );
         $this->_module->freeTriggers($token1);
+
+        $token1 = $this->_module->registerTriggers(array('foo', 'bar'), $chan);
+        $this->assertNotSame(NULL, $token1);
+        $this->_module->freeTriggers($token1);
+    }
+
+    /**
+     * @expectedException   EErebotNotFound
+     */
+    public function testInexistentChanTriggers()
+    {
+        $this->_module->getChanTriggers('#does_not_exist');
+    }
+
+    public function testExistingChanTriggers()
+    {
+        $chan = '#test'; // Specific chan.
+        $token1 = $this->_module->registerTriggers(array('foo', 'bar'), $chan);
+        $this->assertNotSame(NULL, $token1);
+
+        $token2 = $this->_module->registerTriggers('foo', $chan);
+        $this->assertSame(NULL, $token2);
+
+        $this->assertContains('foo', $this->_module->getTriggers($token1));
+        $this->assertContains('bar', $this->_module->getTriggers($token1));
+        $this->assertEquals(
+            array(array('foo', 'bar')),
+            $this->_module->getChanTriggers($chan)
+        );
+        $this->_module->freeTriggers($token1);
+
+        $token1 = $this->_module->registerTriggers(array('foo', 'bar'), $chan);
+        $this->assertNotSame(NULL, $token1);
+        $this->_module->freeTriggers($token1);
+    }
+
+    /**
+     * @expectedException   EErebotNotFound
+     */
+    public function testMalformedToken()
+    {
+        $chan = '#test';
+        $token1 = $this->_module->registerTriggers(array('foo', 'bar'), $chan);
+        $this->assertNotSame(NULL, $token1);
+        $this->assertContains('foo', $this->_module->getTriggers($chan.' BOGUS'));
     }
 }
 

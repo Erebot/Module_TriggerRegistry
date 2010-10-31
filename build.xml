@@ -60,7 +60,7 @@ ${summary}
             exec($command, $output, $return);
 
             if ($return != 0)
-                throw new BuildException("Could not execute Doxygen: " . implode(" ", $output));
+                throw new BuildException("Could not execute xgettext: " . implode(" ", $output));
 
             foreach ($output as $line) {
                 $lowerLine = strtolower($line);
@@ -81,8 +81,8 @@ ${summary}
     }
     ]]></adhoc-task>
 
-    <fileset dir="." id="sources">
-        <include name="*.php"/>
+    <fileset dir="src/" id="sources">
+        <include name="**/*.php"/>
     </fileset>
 
     <fileset dir="tests/" id="tests">
@@ -97,7 +97,7 @@ ${summary}
     <target name="i18n" depends="compile_catalog"/>
 
     <target name="extract_messages" description="">
-        <xgettext command="xgettext -o i18n/${domain}.pot --from-code utf-8 --foreign-user --no-location -E -i -w 80 -s -L PHP --omit-header --strict --force-po --package-name ${domain} --package-version ${version} --msgid-bugs-address ${email}">
+        <xgettext command="xgettext -o data/i18n/${domain}.pot --from-code utf-8 --foreign-user --no-location -E -i -w 80 -s -L PHP --omit-header --strict --force-po --package-name ${domain} --package-version ${version} --msgid-bugs-address ${email}">
             <fileset refid="sources"/>
         </xgettext>
     </target>
@@ -107,13 +107,13 @@ ${summary}
     </target>
 
     <target name="update_1_catalog" description="">
-        <exec command="msgmerge --backup=off -U -N -e -i --strict -w 80 -s -q --no-location i18n/${locale}/LC_MESSAGES/${domain}.po i18n/${domain}.pot" dir="."/>
+        <exec command="msgmerge --backup=off -U -N -e -i --strict -w 80 -s -q --no-location data/i18n/${locale}/LC_MESSAGES/${domain}.po data/i18n/${domain}.pot" dir="."/>
     </target>
 
     <target name="init_catalog" description="">
         <propertyprompt propertyName="locale" promptText="Name of the locale" useExistingValue="true"/>
-        <mkdir dir="i18n/${locale}/LC_MESSAGES"/>
-        <exec command="msginit --no-translator -w 80 -l ${locale} -i i18n/${domain}.pot -o i18n/${locale}/LC_MESSAGES/${domain}.po" dir="."/>
+        <mkdir dir="data/i18n/${locale}/LC_MESSAGES"/>
+        <exec command="msginit --no-translator -w 80 -l ${locale} -i data/i18n/${domain}.pot -o data/i18n/${locale}/LC_MESSAGES/${domain}.po" dir="."/>
     </target>
 
     <target name="compile_catalog" description="">
@@ -121,7 +121,7 @@ ${summary}
     </target>
 
     <target name="compile_1_catalog" description="">
-        <exec command="msgfmt -f -o i18n/${locale}/LC_MESSAGES/${domain}.mo i18n/${locale}/LC_MESSAGES/${domain}.po" dir="."/>
+        <exec command="msgfmt -f -o data/i18n/${locale}/LC_MESSAGES/${domain}.mo data/i18n/${locale}/LC_MESSAGES/${domain}.po" dir="."/>
     </target>
 
 

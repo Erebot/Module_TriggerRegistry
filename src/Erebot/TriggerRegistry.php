@@ -25,9 +25,8 @@ extends ErebotModuleBase
 
     public function reload($flags)
     {
-        if ($flags & self::RELOAD_MEMBERS) {
+        if ($flags & self::RELOAD_MEMBERS)
             $this->_triggers = array(self::MATCH_ANY => array());
-        }
     }
 
     protected function containsRecursive(&$array, &$value)
