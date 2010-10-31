@@ -19,7 +19,7 @@
 class   Erebot_Module_TriggerRegistry
 extends ErebotModuleBase
 {
-    protected $triggers;
+    protected $_triggers;
 
     const MATCH_ANY = '*';
 
