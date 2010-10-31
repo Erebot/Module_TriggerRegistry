@@ -51,8 +51,9 @@ extends ErebotModuleBase
 
         if (!is_string($channel)) {
             $translator = $this->getTranslator(FALSE);
-            throw new EErebotInvalidValue($translator->gettext(
-                'Invalid channel'));
+            throw new EErebotInvalidValue(
+                $translator->gettext('Invalid channel')
+            );
         }
 
         foreach ($triggers as &$trigger) {
@@ -74,7 +75,7 @@ extends ErebotModuleBase
     {
         $translator = $this->getTranslator(FALSE);
 
-        if (!is_string($token))
+        if (!is_string($token) || strpos($token, ' ') === FALSE)
             throw new EErebotInvalidValue($translator->gettext(
                 'Invalid token'));
 
@@ -100,10 +101,15 @@ extends ErebotModuleBase
 
     public function getTriggers($token)
     {
+        $translator = $this->getTranslator(FALSE);
+
+        if (!is_string($token) || strpos($token, ' ') === FALSE)
+            throw new EErebotInvalidValue($translator->gettext(
+                'Invalid token'));
+
         list($chan, $pos) = explode(' ', $token);
 
         if (!isset($this->_triggers[$chan][$pos])) {
-            $translator = $this->getTranslator(FALSE);
             throw new EErebotNotFound($translator->gettext(
                 'No such triggers'));
         }

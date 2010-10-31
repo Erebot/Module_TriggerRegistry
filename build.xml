@@ -126,10 +126,13 @@ ${summary}
 
 
     <!-- Documentation -->
-    <target name="doc" description="" depends="doxygen"/>
+    <target name="doc" description="" depends="doc_html,doc_pdf"/>
 
-    <target name="doxygen" description="">
+    <target name="doc_html" description="">
         <exec command="doxygen" dir="."/>
+    </target>
+
+    <target name="doc_pdf" description="">
         <exec command="make" dir="doc/latex"/>
     </target>
 
