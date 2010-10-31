@@ -135,7 +135,7 @@ ${summary}
             <then>
                 <exec command="pyrus/pyrus.phar package --phar" passthru="true" checkreturn="true"/>
             </then>
-        </fi>
+        </if>
     </target>
 
 
