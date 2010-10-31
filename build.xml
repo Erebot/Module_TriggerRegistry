@@ -125,6 +125,14 @@ ${summary}
     </target>
 
 
+    <!-- Release process -->
+    <target name="release" description="">
+        <exec command="pyrus/pyrus.phar make" passthru="true" checkreturn="true"/>
+        <exec command="pyrus/pyrus.phar package --tgz" passthru="true" checkreturn="true"/>
+        <exec command="pyrus/pyrus.phar package --phar" passthru="true" checkreturn="true"/>
+    </target>
+
+
     <!-- Documentation -->
     <target name="doc" description="" depends="doc_html,doc_pdf"/>
 

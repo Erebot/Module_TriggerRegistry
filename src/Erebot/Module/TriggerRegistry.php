@@ -16,7 +16,7 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-class   ErebotModule_TriggerRegistry
+class   Erebot_Module_TriggerRegistry
 extends ErebotModuleBase
 {
     protected $triggers;
@@ -75,14 +75,16 @@ extends ErebotModuleBase
         $translator = $this->getTranslator(FALSE);
 
         if (!is_string($token) || strpos($token, ' ') === FALSE)
-            throw new EErebotInvalidValue($translator->gettext(
-                'Invalid token'));
+            throw new EErebotInvalidValue(
+                $translator->gettext('Invalid token')
+            );
 
         list($chan, $pos) = explode(' ', $token);
 
         if (!isset($this->_triggers[$chan][$pos]))
-            throw new EErebotNotFound($translator->gettext(
-                'No such triggers'));
+            throw new EErebotNotFound(
+                $translator->gettext('No such triggers')
+            );
 
         unset($this->_triggers[$chan][$pos]);
     }
@@ -91,8 +93,14 @@ extends ErebotModuleBase
     {
         if (!isset($this->_triggers[$chan])) {
             $translator = $this->getTranslator(FALSE);
-            throw new EErebotNotFound(sprintf($translator->gettext(
-                'No triggers found for channel "%s"'), $chan));
+            throw new EErebotNotFound(
+                sprintf(
+                    $translator->gettext(
+                        'No triggers found for channel "%s"'
+                    ),
+                    $chan
+                )
+            );
         }
 
         return $this->_triggers[$chan];
@@ -103,14 +111,16 @@ extends ErebotModuleBase
         $translator = $this->getTranslator(FALSE);
 
         if (!is_string($token) || strpos($token, ' ') === FALSE)
-            throw new EErebotInvalidValue($translator->gettext(
-                'Invalid token'));
+            throw new EErebotInvalidValue(
+                $translator->gettext('Invalid token')
+            );
 
         list($chan, $pos) = explode(' ', $token);
 
         if (!isset($this->_triggers[$chan][$pos])) {
-            throw new EErebotNotFound($translator->gettext(
-                'No such triggers'));
+            throw new EErebotNotFound(
+                $translator->gettext('No such triggers')
+            );
         }
 
         return $this->_triggers[$chan][$pos];

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package version="2.1" xmlns="http://pear.php.net/dtd/package-2.1" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0     http://pear.php.net/dtd/tasks-1.0.xsd     http://pear.php.net/dtd/package-2.1     http://pear.php.net/dtd/package-2.1.xsd">
+ <name>Erebot_Module_TriggerRegistry</name>
+ <channel>pear.erebot.net</channel>
+ <summary>Package Erebot_TriggerRegistry summary.
+</summary>
+ <description>
+Package detailed description here (found in README)</description>
+ <lead>
+  <name>François Poirotte</name>
+  <user>Clicky</user>
+  <email>clicky@erebot.net</email>
+  <active>yes</active>
+ </lead>
+ <date>2010-10-31</date>
+ <time>21:05:05</time>
+ <version>
+  <release>0.1.0</release>
+  <api>0.1.0</api>
+ </version>
+ <stability>
+  <release>alpha</release>
+  <api>alpha</api>
+ </stability>
+ <license uri="http://www.opensource.org/licenses/bsd-license.php">New BSD License</license>
+ <notes>Package Erebot_TriggerRegistry release notes for version 0.1.0.
+
+Package Erebot_TriggerRegistry API release notes for version 0.1.0.</notes>
+ <contents>
+  <dir name="/">
+   <file role="test" name="test/Erebot_Module_TriggerRegistry/pear.erebot.net/triggerRegistryTest.php"/>
+   <file role="test" name="test/Erebot_Module_TriggerRegistry/pear.erebot.net/testenv/testenv/bootstrap.php"/>
+   <file role="test" name="test/Erebot_Module_TriggerRegistry/pear.erebot.net/Core"/>
+   <file role="php" name="php/Erebot/Module/TriggerRegistry.php"/>
+   <file role="doc" name="doc/Erebot_Module_TriggerRegistry/pear.erebot.net/coverage/default/coverage/default/package-summary.html"/>
+   <file role="doc" name="doc/Erebot_Module_TriggerRegistry/pear.erebot.net/coverage/default/coverage/default/package-frame.html"/>
+   <file role="doc" name="doc/Erebot_Module_TriggerRegistry/pear.erebot.net/coverage/default/coverage/default/Erebot_Module_TriggerRegistry.html"/>
+   <file role="doc" name="doc/Erebot_Module_TriggerRegistry/pear.erebot.net/coverage/default/coverage/default/ErebotModule_TriggerRegistry.html"/>
+   <file role="doc" name="doc/Erebot_Module_TriggerRegistry/pear.erebot.net/coverage/coverage/stylesheet.css"/>
+   <file role="doc" name="doc/Erebot_Module_TriggerRegistry/pear.erebot.net/coverage/coverage/overview-summary.html"/>
+   <file role="doc" name="doc/Erebot_Module_TriggerRegistry/pear.erebot.net/coverage/coverage/overview-frame.html"/>
+   <file role="doc" name="doc/Erebot_Module_TriggerRegistry/pear.erebot.net/coverage/coverage/index.html"/>
+   <file role="doc" name="doc/Erebot_Module_TriggerRegistry/pear.erebot.net/coverage/coverage/allclasses-frame.html"/>
+   <file role="data" name="data/Erebot_Module_TriggerRegistry/pear.erebot.net/i18n/i18n/TriggerRegistry.pot"/>
+   <file role="data" name="data/Erebot_Module_TriggerRegistry/pear.erebot.net/i18n/fr_FR/LC_MESSAGES/i18n/fr_FR/LC_MESSAGES/TriggerRegistry.po"/>
+   <file role="data" name="data/Erebot_Module_TriggerRegistry/pear.erebot.net/i18n/fr_FR/LC_MESSAGES/i18n/fr_FR/LC_MESSAGES/TriggerRegistry.mo"/>
+   <file role="data" name="data/Erebot_Module_TriggerRegistry/pear.erebot.net/i18n/en_US/LC_MESSAGES/i18n/en_US/LC_MESSAGES/TriggerRegistry.po"/>
+   <file role="data" name="data/Erebot_Module_TriggerRegistry/pear.erebot.net/i18n/en_US/LC_MESSAGES/i18n/en_US/LC_MESSAGES/TriggerRegistry.mo"/>
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.2.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.8</min>
+   </pearinstaller>
+  </required>
+ </dependencies>
+ <phprelease>
+  <filelist>
+   <install name="data/Erebot_Module_TriggerRegistry/pear.erebot.net/i18n/en_US/LC_MESSAGES/i18n/en_US/LC_MESSAGES/TriggerRegistry.mo" as="pear.erebot.net/i18n/en_US/LC_MESSAGES/i18n/en_US/LC_MESSAGES/TriggerRegistry.mo"/>
+   <install name="data/Erebot_Module_TriggerRegistry/pear.erebot.net/i18n/en_US/LC_MESSAGES/i18n/en_US/LC_MESSAGES/TriggerRegistry.po" as="pear.erebot.net/i18n/en_US/LC_MESSAGES/i18n/en_US/LC_MESSAGES/TriggerRegistry.po"/>
+   <install name="data/Erebot_Module_TriggerRegistry/pear.erebot.net/i18n/fr_FR/LC_MESSAGES/i18n/fr_FR/LC_MESSAGES/TriggerRegistry.mo" as="pear.erebot.net/i18n/fr_FR/LC_MESSAGES/i18n/fr_FR/LC_MESSAGES/TriggerRegistry.mo"/>
+   <install name="data/Erebot_Module_TriggerRegistry/pear.erebot.net/i18n/fr_FR/LC_MESSAGES/i18n/fr_FR/LC_MESSAGES/TriggerRegistry.po" as="pear.erebot.net/i18n/fr_FR/LC_MESSAGES/i18n/fr_FR/LC_MESSAGES/TriggerRegistry.po"/>
+   <install name="data/Erebot_Module_TriggerRegistry/pear.erebot.net/i18n/i18n/TriggerRegistry.pot" as="pear.erebot.net/i18n/i18n/TriggerRegistry.pot"/>
+   <install name="doc/Erebot_Module_TriggerRegistry/pear.erebot.net/coverage/coverage/allclasses-frame.html" as="pear.erebot.net/coverage/coverage/allclasses-frame.html"/>
+   <install name="doc/Erebot_Module_TriggerRegistry/pear.erebot.net/coverage/coverage/index.html" as="pear.erebot.net/coverage/coverage/index.html"/>
+   <install name="doc/Erebot_Module_TriggerRegistry/pear.erebot.net/coverage/coverage/overview-frame.html" as="pear.erebot.net/coverage/coverage/overview-frame.html"/>
+   <install name="doc/Erebot_Module_TriggerRegistry/pear.erebot.net/coverage/coverage/overview-summary.html" as="pear.erebot.net/coverage/coverage/overview-summary.html"/>
+   <install name="doc/Erebot_Module_TriggerRegistry/pear.erebot.net/coverage/coverage/stylesheet.css" as="pear.erebot.net/coverage/coverage/stylesheet.css"/>
+   <install name="doc/Erebot_Module_TriggerRegistry/pear.erebot.net/coverage/default/coverage/default/ErebotModule_TriggerRegistry.html" as="pear.erebot.net/coverage/default/coverage/default/ErebotModule_TriggerRegistry.html"/>
+   <install name="doc/Erebot_Module_TriggerRegistry/pear.erebot.net/coverage/default/coverage/default/Erebot_Module_TriggerRegistry.html" as="pear.erebot.net/coverage/default/coverage/default/Erebot_Module_TriggerRegistry.html"/>
+   <install name="doc/Erebot_Module_TriggerRegistry/pear.erebot.net/coverage/default/coverage/default/package-frame.html" as="pear.erebot.net/coverage/default/coverage/default/package-frame.html"/>
+   <install name="doc/Erebot_Module_TriggerRegistry/pear.erebot.net/coverage/default/coverage/default/package-summary.html" as="pear.erebot.net/coverage/default/coverage/default/package-summary.html"/>
+   <install name="php/Erebot/Module/TriggerRegistry.php" as="Erebot/Module/TriggerRegistry.php"/>
+   <install name="test/Erebot_Module_TriggerRegistry/pear.erebot.net/Core" as="pear.erebot.net/Core"/>
+   <install name="test/Erebot_Module_TriggerRegistry/pear.erebot.net/testenv/testenv/bootstrap.php" as="pear.erebot.net/testenv/testenv/bootstrap.php"/>
+   <install name="test/Erebot_Module_TriggerRegistry/pear.erebot.net/triggerRegistryTest.php" as="pear.erebot.net/triggerRegistryTest.php"/>
+  </filelist>
+ </phprelease>
+</package>
