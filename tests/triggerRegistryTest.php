@@ -50,7 +50,7 @@ extends ErebotModuleTestCase
     }
 
     /**
-     * @expectedException   EErebotInvalidValue
+     * @expectedException   Erebot_InvalidValueException
      */
     public function testRegisterWithInvalidValueForChannel()
     {
@@ -58,7 +58,7 @@ extends ErebotModuleTestCase
     }
 
     /**
-     * @expectedException   EErebotInvalidValue
+     * @expectedException   Erebot_InvalidValueException
      */
     public function testUnregisterWithInvalidValueForChannel()
     {
@@ -66,7 +66,7 @@ extends ErebotModuleTestCase
     }
 
     /**
-     * @expectedException   EErebotNotFound
+     * @expectedException   Erebot_NotFoundException
      */
     public function testUnregisterInexistentTrigger()
     {
@@ -96,7 +96,7 @@ extends ErebotModuleTestCase
     }
 
     /**
-     * @expectedException   EErebotNotFound
+     * @expectedException   Erebot_NotFoundException
      */
     public function testInexistentChanTriggers()
     {
@@ -126,7 +126,7 @@ extends ErebotModuleTestCase
     }
 
     /**
-     * @expectedException   EErebotNotFound
+     * @expectedException   Erebot_NotFoundException
      */
     public function testInvalidToken()
     {
@@ -137,7 +137,7 @@ extends ErebotModuleTestCase
     }
 
     /**
-     * @expectedException   EErebotInvalidValue
+     * @expectedException   Erebot_InvalidValueException
      */
     public function testInvalidToken2()
     {
