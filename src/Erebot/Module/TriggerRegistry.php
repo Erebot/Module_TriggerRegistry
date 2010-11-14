@@ -17,7 +17,7 @@
 */
 
 class   Erebot_Module_TriggerRegistry
-extends ErebotModuleBase
+extends Erebot_Module_Base
 {
     protected $_triggers;
 
