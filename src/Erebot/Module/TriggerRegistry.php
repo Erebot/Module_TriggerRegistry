@@ -55,13 +55,21 @@ extends Erebot_Module_Base
             );
         }
 
+        /// @TODO: clean this up
+        $logging    =&  Plop::getInstance();
+        $logger     =   $logging->getLogger(__FILE__);
+
         foreach ($triggers as &$trigger) {
             if ($channel != self::MATCH_ANY && isset($this->_triggers[$channel]))
-                if ($this->containsRecursive($this->_triggers[$channel], $trigger))
+                if ($this->containsRecursive($this->_triggers[$channel], $trigger)) {
+                    $logger->info('The trigger named "'.$trigger.'" already exists on '.$channel);
                     return NULL;
+                }
 
-            if ($this->containsRecursive($this->_triggers[self::MATCH_ANY], $trigger))
+            if ($this->containsRecursive($this->_triggers[self::MATCH_ANY], $trigger)) {
+                $logger->info('The trigger named "'.$trigger.'" already exists globally.');
                 return NULL;
+            }
         }
         unset($trigger);
 
