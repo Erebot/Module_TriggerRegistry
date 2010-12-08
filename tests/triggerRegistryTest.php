@@ -39,7 +39,7 @@ extends ErebotModuleTestCase
             $this->_connection,
             NULL
         );
-        $this->_module->reload($this->_module->RELOAD_MEMBERS);
+        $this->_module->reload(Erebot_Module_Base::RELOAD_MEMBERS);
     }
 
     public function tearDown()
