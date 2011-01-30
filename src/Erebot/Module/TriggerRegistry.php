@@ -23,10 +23,14 @@ extends Erebot_Module_Base
 
     const MATCH_ANY = '*';
 
-    public function reload($flags)
+    public function _reload($flags)
     {
         if ($flags & self::RELOAD_MEMBERS)
             $this->_triggers = array(self::MATCH_ANY => array());
+    }
+
+    protected function _unload()
+    {
     }
 
     protected function containsRecursive(&$array, &$value)
