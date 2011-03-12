@@ -31,6 +31,8 @@ extends Erebot_Module_Base
 
     protected function _unload()
     {
+        // @FIXME: ugly hack for code coverage reports.
+        if (0);
     }
 
     protected function containsRecursive(&$array, &$value)
