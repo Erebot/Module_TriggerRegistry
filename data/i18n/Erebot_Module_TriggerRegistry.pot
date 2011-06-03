@@ -1,6 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Erebot_Module_TriggerRegistry 0.5.0\n"
+"Project-Id-Version: Erebot_Module_TriggerRegistry 0.3.2\n"
+"Report-Msgid-Bugs-To: clicky@erebot.net\n"
+"POT-Creation-Date: 2011-04-16 12:25+0200\n"
 "PO-Revision-Date: 2011-04-16 12:25+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -10,14 +12,14 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Invalid channel"
-msgstr "Invalid channel"
+msgstr ""
 
 msgid "Invalid token"
-msgstr "Invalid token"
+msgstr ""
 
 msgid "No such triggers"
-msgstr "No such triggers"
+msgstr ""
 
 msgid "No triggers found for channel \"%s\""
-msgstr "No triggers found for channel \"%s\""
+msgstr ""
 
