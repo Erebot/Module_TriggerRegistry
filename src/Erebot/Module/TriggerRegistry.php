@@ -31,8 +31,7 @@ extends Erebot_Module_Base
 
     protected function _unload()
     {
-        // @FIXME: ugly hack for code coverage reports.
-        if (0);
+        if (0); /// @FIXME: hack for code coverage.
     }
 
     protected function containsRecursive(&$array, &$value)
@@ -61,23 +60,20 @@ extends Erebot_Module_Base
             );
         }
 
-        /// @TODO: clean this up
-        $logging    =&  Plop::getInstance();
-        $logger     =   $logging->getLogger(__FILE__);
-
-        foreach ($triggers as &$trigger) {
+        foreach ($triggers as $trigger) {
             if ($channel != self::MATCH_ANY && isset($this->_triggers[$channel]))
                 if ($this->containsRecursive($this->_triggers[$channel], $trigger)) {
-                    $logger->info('The trigger named "'.$trigger.'" already exists on '.$channel);
+                    $this->_logger and $this->_logger->info(
+                        'The trigger named "'.$trigger.'" already exists on '.$channel);
                     return NULL;
                 }
 
             if ($this->containsRecursive($this->_triggers[self::MATCH_ANY], $trigger)) {
-                $logger->info('The trigger named "'.$trigger.'" already exists globally.');
+                $this->_logger and $this->_logger->info(
+                    'The trigger named "'.$trigger.'" already exists globally.');
                 return NULL;
             }
         }
-        unset($trigger);
 
         $this->_triggers[$channel][] = $triggers;
         end($this->_triggers[$channel]);
