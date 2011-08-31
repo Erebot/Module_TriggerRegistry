@@ -61,16 +61,27 @@ extends Erebot_Module_Base
         }
 
         foreach ($triggers as $trigger) {
-            if ($channel != self::MATCH_ANY && isset($this->_triggers[$channel]))
-                if ($this->containsRecursive($this->_triggers[$channel], $trigger)) {
+            if ($channel != self::MATCH_ANY &&
+                isset($this->_triggers[$channel])) {
+                if ($this->containsRecursive(
+                    $this->_triggers[$channel],
+                    $trigger
+                )) {
                     $this->_logger and $this->_logger->info(
-                        'The trigger named "'.$trigger.'" already exists on '.$channel);
+                        'The trigger named "'.$trigger.
+                        '" already exists on '.$channel
+                    );
                     return NULL;
                 }
+            }
 
-            if ($this->containsRecursive($this->_triggers[self::MATCH_ANY], $trigger)) {
+            if ($this->containsRecursive(
+                $this->_triggers[self::MATCH_ANY],
+                $trigger
+            )) {
                 $this->_logger and $this->_logger->info(
-                    'The trigger named "'.$trigger.'" already exists globally.');
+                    'The trigger named "'.$trigger.'" already exists globally.'
+                );
                 return NULL;
             }
         }
