@@ -53,11 +53,9 @@ extends Erebot_Module_Base
         if (!is_array($triggers))
             $triggers = array($triggers);
 
+        $fmt = $this->getFormatter(FALSE);
         if (!is_string($channel)) {
-            $translator = $this->getTranslator(FALSE);
-            throw new Erebot_InvalidValueException(
-                $translator->gettext('Invalid channel')
-            );
+            throw new Erebot_InvalidValueException($fmt->_('Invalid channel'));
         }
 
         foreach ($triggers as $trigger) {
@@ -68,8 +66,14 @@ extends Erebot_Module_Base
                     $trigger
                 )) {
                     $this->_logger and $this->_logger->info(
-                        'The trigger named "'.$trigger.
-                        '" already exists on '.$channel
+                        $fmt->_(
+                            'A trigger named "<var name="trigger"/>" '.
+                            'already exists on <var name="chan"/>',
+                            array(
+                                'trigger' => $trigger,
+                                'chan' => $channel,
+                            )
+                        )
                     );
                     return NULL;
                 }
@@ -80,7 +84,9 @@ extends Erebot_Module_Base
                 $trigger
             )) {
                 $this->_logger and $this->_logger->info(
-                    'The trigger named "'.$trigger.'" already exists globally.'
+                    'A trigger named "<var name="trigger"/>" '.
+                    'already exists globally.',
+                    array('trigger' => $trigger)
                 );
                 return NULL;
             }
@@ -93,19 +99,15 @@ extends Erebot_Module_Base
 
     public function freeTriggers($token)
     {
-        $translator = $this->getTranslator(FALSE);
+        $fmt = $this->getFormatter(FALSE);
 
         if (!is_string($token) || strpos($token, ' ') === FALSE)
-            throw new Erebot_InvalidValueException(
-                $translator->gettext('Invalid token')
-            );
+            throw new Erebot_InvalidValueException($fmt->_('Invalid token'));
 
         list($chan, $pos) = explode(' ', $token);
 
         if (!isset($this->_triggers[$chan][$pos]))
-            throw new Erebot_NotFoundException(
-                $translator->gettext('No such triggers')
-            );
+            throw new Erebot_NotFoundException($fmt->_('No such triggers'));
 
         unset($this->_triggers[$chan][$pos]);
     }
@@ -113,13 +115,11 @@ extends Erebot_Module_Base
     public function getChanTriggers($chan)
     {
         if (!isset($this->_triggers[$chan])) {
-            $translator = $this->getTranslator(FALSE);
+            $fmt = $this->_(FALSE);
             throw new Erebot_NotFoundException(
-                sprintf(
-                    $translator->gettext(
-                        'No triggers found for channel "%s"'
-                    ),
-                    $chan
+                $fmt->_(
+                    'No triggers found for channel "<var name="chan"/>"',
+                    array('chan' => $chan)
                 )
             );
         }
@@ -129,19 +129,15 @@ extends Erebot_Module_Base
 
     public function getTriggers($token)
     {
-        $translator = $this->getTranslator(FALSE);
+        $fmt = $this->getFormatter(FALSE);
 
         if (!is_string($token) || strpos($token, ' ') === FALSE)
-            throw new Erebot_InvalidValueException(
-                $translator->gettext('Invalid token')
-            );
+            throw new Erebot_InvalidValueException($fmt->_('Invalid token'));
 
         list($chan, $pos) = explode(' ', $token);
 
         if (!isset($this->_triggers[$chan][$pos])) {
-            throw new Erebot_NotFoundException(
-                $translator->gettext('No such triggers')
-            );
+            throw new Erebot_NotFoundException($fmt->_('No such triggers'));
         }
 
         return $this->_triggers[$chan][$pos];
