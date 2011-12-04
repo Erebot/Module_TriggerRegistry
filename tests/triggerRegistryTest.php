@@ -17,17 +17,13 @@
 */
 
 class   TriggerRegistryTest
-extends ErebotModuleTestCase
+extends Erebot_Testenv_Module_TestCase
 {
     public function setUp()
     {
-        parent::setUp();
-        $styling = $this->getMockForAbstractClass(
-            'StylingStub',
-            array(), '', FALSE, FALSE
-        );
         $this->_module = new Erebot_Module_TriggerRegistry(NULL);
-        $this->_module->setFactory('!Styling', get_class($styling));
+        parent::setUp();
+
         $this->_module->reload(
             $this->_connection,
             Erebot_Module_Base::RELOAD_MEMBERS
