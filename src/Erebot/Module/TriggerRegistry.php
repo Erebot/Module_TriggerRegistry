@@ -115,7 +115,7 @@ extends Erebot_Module_Base
     public function getChanTriggers($chan)
     {
         if (!isset($this->_triggers[$chan])) {
-            $fmt = $this->_(FALSE);
+            $fmt = $this->getFormatter(FALSE);
             throw new Erebot_NotFoundException(
                 $fmt->_(
                     'No triggers found for channel "<var name="chan"/>"',

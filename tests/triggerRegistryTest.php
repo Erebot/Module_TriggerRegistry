@@ -22,7 +22,12 @@ extends ErebotModuleTestCase
     public function setUp()
     {
         parent::setUp();
+        $styling = $this->getMockForAbstractClass(
+            'StylingStub',
+            array(), '', FALSE, FALSE
+        );
         $this->_module = new Erebot_Module_TriggerRegistry(NULL);
+        $this->_module->setFactory('!Styling', get_class($styling));
         $this->_module->reload(
             $this->_connection,
             Erebot_Module_Base::RELOAD_MEMBERS
