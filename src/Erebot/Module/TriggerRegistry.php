@@ -61,11 +61,6 @@ extends Erebot_Module_Base
             $this->_triggers = array(self::MATCH_ANY => array());
     }
 
-    /// \copydoc Erebot_Module_Base::_unload()
-    protected function _unload()
-    {
-    }
-
     /**
      * Checks whether some array contains the given
      * data, in a recursive fashion.
@@ -85,12 +80,13 @@ extends Erebot_Module_Base
         if (!is_array($array))
             return FALSE;
 
-        foreach ($array as $sub)
-            if (!strcasecmp($sub, $value))
+        foreach ($array as $sub) {
+            if (is_string($sub) && !strcasecmp($sub, $value))
                 return TRUE;
 
-            if ($this->_containsRecursive($sub, $value))
+            if (is_array($sub) && $this->_containsRecursive($sub, $value))
                 return TRUE;
+        }
         return FALSE;
     }
 
