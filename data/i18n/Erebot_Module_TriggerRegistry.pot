@@ -6,7 +6,7 @@
 msgid   ""
 msgstr  "Project-Id-Version: Erebot_Module_TriggerRegistry 0.1.1\n"
         "Report-Msgid-Bugs-To: i18n@erebot.net\n"
-        "POT-Creation-Date: 2011-12-04 19:24+0100\n"
+        "POT-Creation-Date: 2012-02-10 23:43+0100\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,25 +15,30 @@ msgstr  "Project-Id-Version: Erebot_Module_TriggerRegistry 0.1.1\n"
         "Content-Type: text/plain; charset=CHARSET\n"
         "Content-Transfer-Encoding: 8bit\n"
 #
-# File: src/Erebot/Module/TriggerRegistry.php, line: 70
-msgid   "A trigger named \"<var name=\"trigger\"/>\" already exists on <var "
-        "name=\"chan\"/>"
+# File: src/Erebot/Module/TriggerRegistry.php, line: 138
+msgid   "A trigger named \"<var name=\"trigger\"/>\" has already been "
+        "registered globally."
 msgstr  ""
 #
-# File: src/Erebot/Module/TriggerRegistry.php, line: 58
+# File: src/Erebot/Module/TriggerRegistry.php, line: 134
+msgid   "A trigger named \"<var name=\"trigger\"/>\" has already been "
+        "registered on channel <var name=\"chan\"/>."
+msgstr  ""
+#
+# File: src/Erebot/Module/TriggerRegistry.php, line: 129
 msgid   "Invalid channel"
 msgstr  ""
 #
-# File: src/Erebot/Module/TriggerRegistry.php, line: 105
-# File: src/Erebot/Module/TriggerRegistry.php, line: 135
+# File: src/Erebot/Module/TriggerRegistry.php, line: 192
+# File: src/Erebot/Module/TriggerRegistry.php, line: 249
 msgid   "Invalid token"
 msgstr  ""
 #
-# File: src/Erebot/Module/TriggerRegistry.php, line: 110
-# File: src/Erebot/Module/TriggerRegistry.php, line: 140
+# File: src/Erebot/Module/TriggerRegistry.php, line: 197
+# File: src/Erebot/Module/TriggerRegistry.php, line: 254
 msgid   "No such triggers"
 msgstr  ""
 #
-# File: src/Erebot/Module/TriggerRegistry.php, line: 121
+# File: src/Erebot/Module/TriggerRegistry.php, line: 223
 msgid   "No triggers found for channel \"<var name=\"chan\"/>\""
 msgstr  ""

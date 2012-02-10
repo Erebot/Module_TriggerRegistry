@@ -132,11 +132,11 @@ extends Erebot_Module_Base
         $scopes = array(
             $channel => $translator->_(
                 'A trigger named "<var name="trigger"/>" '.
-                'already exists on <var name="chan"/>'
+                'has already been registered on channel <var name="chan"/>.'
             ),
             self::MATCH_ANY => $translator->_(
                 'A trigger named "<var name="trigger"/>" '.
-                'already exists globally.'
+                'has already been registered globally.'
             ),
         );
 
