@@ -123,42 +123,42 @@ extends Erebot_Module_Base
         if (!is_array($triggers))
             $triggers = array($triggers);
 
-        $fmt = $this->getFormatter(FALSE);
+        $fmt        = $this->getFormatter(FALSE);
+        $translator = $fmt->getTranslator();
         if (!is_string($channel)) {
             throw new Erebot_InvalidValueException($fmt->_('Invalid channel'));
         }
 
-        foreach ($triggers as $trigger) {
-            if ($channel != self::MATCH_ANY &&
-                isset($this->_triggers[$channel])) {
-                if ($this->_containsRecursive(
-                    $this->_triggers[$channel],
-                    $trigger
-                )) {
-                    $this->_logger and $this->_logger->info(
-                        $fmt->_(
-                            'A trigger named "<var name="trigger"/>" '.
-                            'already exists on <var name="chan"/>',
-                            array(
-                                'trigger' => $trigger,
-                                'chan' => $channel,
-                            )
-                        )
-                    );
-                    return NULL;
-                }
-            }
+        $scopes = array(
+            $channel => $translator->_(
+                'A trigger named "<var name="trigger"/>" '.
+                'already exists on <var name="chan"/>'
+            ),
+            self::MATCH_ANY => $translator->_(
+                'A trigger named "<var name="trigger"/>" '.
+                'already exists globally.'
+            ),
+        );
 
-            if ($this->_containsRecursive(
-                $this->_triggers[self::MATCH_ANY],
-                $trigger
-            )) {
-                $this->_logger and $this->_logger->info(
-                    'A trigger named "<var name="trigger"/>" '.
-                    'already exists globally.',
-                    array('trigger' => $trigger)
-                );
-                return NULL;
+        foreach ($triggers as $trigger) {
+            foreach ($scopes as $scope => $error) {
+                if (isset($this->_triggers[$scope])) {
+                    if ($this->_containsRecursive(
+                        $this->_triggers[$scope],
+                        $trigger
+                    )) {
+                        $this->_logger and $this->_logger->info(
+                            $fmt->render(
+                                $error,
+                                array(
+                                    'trigger' => $trigger,
+                                    'chan' => $channel,
+                                )
+                            )
+                        );
+                        return NULL;
+                    }
+                }
             }
         }
 
