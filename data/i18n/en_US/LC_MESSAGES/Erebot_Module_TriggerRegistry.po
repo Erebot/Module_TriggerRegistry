@@ -1,69 +1,58 @@
 #
-msgid   ""
-msgstr  "Project-Id-Version: Erebot_Module_TriggerRegistry 0.5.0\n"
-        "Report-Msgid-Bugs-To: i18n@erebot.net\n"
-        "POT-Creation-Date: 2012-02-10 23:43+0100\n"
-        "PO-Revision-Date: 2011-04-16 12:25+0200\n"
-        "Last-Translator: Automatically generated\n"
-        "Language-Team: none\n"
-        "Language: \n"
-        "MIME-Version: 1.0\n"
-        "Content-Type: text/plain; charset=utf-8\n"
-        "Content-Transfer-Encoding: 8bit\n"
-        "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+msgid ""
+msgstr ""
+"Project-Id-Version: Erebot_Module_TriggerRegistry 0.5.0\n"
+"Report-Msgid-Bugs-To: i18n@erebot.net\n"
+"POT-Creation-Date: 2012-05-20 23:28+0200\n"
+"PO-Revision-Date: 2011-04-16 12:25+0200\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 #
 # File: src/Erebot/Module/TriggerRegistry.php, line: 138
-msgid   "A trigger named \"<var name=\"trigger\"/>\" has already been "
-        "registered globally."
-msgstr  "A trigger named \"<var name=\"trigger\"/>\" has already been "
-        "registered globally."
+msgid ""
+"A trigger named \"<var name=\"trigger\"/>\" has already been registered "
+"globally."
+msgstr ""
+"A trigger named \"<var name=\"trigger\"/>\" has already been registered "
+"globally."
 #
 # File: src/Erebot/Module/TriggerRegistry.php, line: 134
-msgid   "A trigger named \"<var name=\"trigger\"/>\" has already been "
-        "registered on channel <var name=\"chan\"/>."
-msgstr  "A trigger named \"<var name=\"trigger\"/>\" has already been "
-        "registered on channel <var name=\"chan\"/>."
+msgid ""
+"A trigger named \"<var name=\"trigger\"/>\" has already been registered on "
+"channel <var name=\"chan\"/>."
+msgstr ""
+"A trigger named \"<var name=\"trigger\"/>\" has already been registered on "
+"channel <var name=\"chan\"/>."
 #
-msgid   "Invalid channel"
-msgstr  "Invalid channel"
+msgid "Invalid channel"
+msgstr "Invalid channel"
 #
-msgid   "Invalid token"
-msgstr  "Invalid token"
+msgid "Invalid token"
+msgstr "Invalid token"
 #
-msgid   "No such triggers"
-msgstr  "No such triggers"
+msgid "No such triggers"
+msgstr "No such triggers"
 #
 # File: src/Erebot/Module/TriggerRegistry.php, line: 121
-msgid   "No triggers found for channel \"<var name=\"chan\"/>\""
-msgstr  "No triggers found for channel \"<var name=\"chan\"/>\""
-#
-#
-#
-# File: src/Erebot/Module/TriggerRegistry.php, line: 134
-#~ msgid        "A trigger named \"<var name=\"trigger\"/>\" has already been "
-#~      "registered on channel <var name=\"chan\"/>"
-#~ msgstr       "A trigger named \"<var name=\"trigger\"/>\" has already been "
-#~      "registered on channel <var name=\"chan\"/>"
-#
-#
-#
-#
-#
-# File: src/Erebot/Module/TriggerRegistry.php, line: 138
-#~ msgid        "A trigger named \"<var name=\"trigger\"/>\" is already "
-#~      "registered globally."
-#~ msgstr       "A trigger named \"<var name=\"trigger\"/>\" is already "
-#~      "registered globally."
+msgid "No triggers found for channel \"<var name=\"chan\"/>\""
+msgstr "No triggers found for channel \"<var name=\"chan\"/>\""
 #
 #
 #
 #
 #
 # File: src/Erebot/Module/TriggerRegistry.php, line: 134
-#~ msgid        "A trigger named \"<var name=\"trigger\"/>\" is already "
-#~      "registered on <var name=\"chan\"/>"
-#~ msgstr       "A trigger named \"<var name=\"trigger\"/>\" is already "
-#~      "registered on <var name=\"chan\"/>"
+#~ msgid ""
+#~ "A trigger named \"<var name=\"trigger\"/>\" has already been registered on "
+#~ "channel <var name=\"chan\"/>"
+#~ msgstr ""
+#~ "A trigger named \"<var name=\"trigger\"/>\" has already been registered on "
+#~ "channel <var name=\"chan\"/>"
 #
 #
 #
@@ -72,10 +61,38 @@ msgstr  "No triggers found for channel \"<var name=\"chan\"/>\""
 #
 #
 # File: src/Erebot/Module/TriggerRegistry.php, line: 138
-#~ msgid        "A trigger named \"<var name=\"trigger\"/>\" already exists "
-#~      "globally."
-#~ msgstr       "A trigger named \"<var name=\"trigger\"/>\" already exists "
-#~      "globally."
+#~ msgid ""
+#~ "A trigger named \"<var name=\"trigger\"/>\" is already registered globally."
+#~ msgstr ""
+#~ "A trigger named \"<var name=\"trigger\"/>\" is already registered globally."
+#
+#
+#
+#
+#
+#
+#
+# File: src/Erebot/Module/TriggerRegistry.php, line: 134
+#~ msgid ""
+#~ "A trigger named \"<var name=\"trigger\"/>\" is already registered on <var "
+#~ "name=\"chan\"/>"
+#~ msgstr ""
+#~ "A trigger named \"<var name=\"trigger\"/>\" is already registered on <var "
+#~ "name=\"chan\"/>"
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# File: src/Erebot/Module/TriggerRegistry.php, line: 138
+#~ msgid "A trigger named \"<var name=\"trigger\"/>\" already exists globally."
+#~ msgstr "A trigger named \"<var name=\"trigger\"/>\" already exists globally."
+#
+#
 #
 #
 #
@@ -84,10 +101,12 @@ msgstr  "No triggers found for channel \"<var name=\"chan\"/>\""
 #
 #
 # File: src/Erebot/Module/TriggerRegistry.php, line: 70
-#~ msgid        "A trigger named \"<var name=\"trigger\"/>\" already exists on "
-#~      "<var name=\"chan\"/>"
-#~ msgstr       "A trigger named \"<var name=\"trigger\"/>\" already exists on "
-#~      "<var name=\"chan\"/>"
+#~ msgid ""
+#~ "A trigger named \"<var name=\"trigger\"/>\" already exists on <var name="
+#~ "\"chan\"/>"
+#~ msgstr ""
+#~ "A trigger named \"<var name=\"trigger\"/>\" already exists on <var name="
+#~ "\"chan\"/>"
 #
 #
 #
@@ -101,5 +120,7 @@ msgstr  "No triggers found for channel \"<var name=\"chan\"/>\""
 #
 #
 #
-#~ msgid        "No triggers found for channel \"%s\""
-#~ msgstr       "No triggers found for channel \"%s\""
+#
+#
+#~ msgid "No triggers found for channel \"%s\""
+#~ msgstr "No triggers found for channel \"%s\""
