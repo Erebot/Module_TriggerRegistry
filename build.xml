@@ -13,5 +13,5 @@
         <exclude name="Core/**/*.php"/>
     </fileset>
 
-    <import file="buildenv/build.xml"/>
+    <import file="vendor/erebot/buildenv/build.xml"/>
 </project>
