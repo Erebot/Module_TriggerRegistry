@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Erebot_Module_TriggerRegistry dev-master\n"
 "Report-Msgid-Bugs-To: i18n@erebot.net\n"
-"POT-Creation-Date: 2013-08-15 14:41+0200\n"
+"POT-Creation-Date: 2014-01-03 00:43+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,32 +16,38 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 #
-# File: src/Erebot/Module/TriggerRegistry.php, line: 138
+# File: src/Erebot/Module/TriggerRegistry.php, line: 182
 msgid ""
 "A trigger named \"<var name=\"trigger\"/>\" has already been registered "
 "globally."
 msgstr ""
 #
-# File: src/Erebot/Module/TriggerRegistry.php, line: 134
+# File: src/Erebot/Module/TriggerRegistry.php, line: 178
 msgid ""
 "A trigger named \"<var name=\"trigger\"/>\" has already been registered on "
 "channel <var name=\"chan\"/>."
 msgstr ""
 #
-# File: src/Erebot/Module/TriggerRegistry.php, line: 129
+# File: src/Erebot/Module/TriggerRegistry.php, line: 173
 msgid "Invalid channel"
 msgstr ""
 #
-# File: src/Erebot/Module/TriggerRegistry.php, line: 192
-# File: src/Erebot/Module/TriggerRegistry.php, line: 249
+# File: src/Erebot/Module/TriggerRegistry.php, line: 236
+# File: src/Erebot/Module/TriggerRegistry.php, line: 293
 msgid "Invalid token"
 msgstr ""
 #
-# File: src/Erebot/Module/TriggerRegistry.php, line: 197
-# File: src/Erebot/Module/TriggerRegistry.php, line: 254
+# File: src/Erebot/Module/TriggerRegistry.php, line: 241
+# File: src/Erebot/Module/TriggerRegistry.php, line: 298
 msgid "No such triggers"
 msgstr ""
 #
-# File: src/Erebot/Module/TriggerRegistry.php, line: 223
+# File: src/Erebot/Module/TriggerRegistry.php, line: 267
 msgid "No triggers found for channel \"<var name=\"chan\"/>\""
+msgstr ""
+#
+# File: src/Erebot/Module/TriggerRegistry.php, line: 99
+msgid ""
+"This module does not provide any command, but provides a registry that other "
+"modules may use to register triggers (commands)."
 msgstr ""
