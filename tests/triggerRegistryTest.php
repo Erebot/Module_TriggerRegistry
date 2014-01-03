@@ -16,6 +16,39 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+abstract class  TextWrapper
+implements      Erebot_Interface_TextWrapper
+{
+    private $_chunks;
+
+    public function __construct($text)
+    {
+        $this->_chunks = explode(' ', $text);
+    }
+
+    public function __toString()
+    {
+        return implode(' ', $this->_chunks);
+    }
+
+    public function getTokens($start, $length = 0, $separator = " ")
+    {
+        if ($length !== 0)
+            return implode(" ", array_slice($this->_chunks, $start, $length));
+        return implode(" ", array_slice($this->_chunks, $start));
+    }
+
+    public function offsetGet($offset)
+    {
+        return $this->_chunks[$offset];
+    }
+
+    public function count()
+    {
+        return count($this->_chunks);
+    }
+}
+
 class   TriggerRegistryTest
 extends Erebot_Testenv_Module_TestCase
 {
@@ -129,6 +162,29 @@ extends Erebot_Testenv_Module_TestCase
     public function testInvalidToken2()
     {
         $this->_module->getTriggers(NULL);
+    }
+
+    public function testHelp()
+    {
+        $wordsClass = $this->getMockForAbstractClass(
+            'TextWrapper',
+            array(),
+            '',
+            FALSE,
+            FALSE
+        );
+        $words = new $wordsClass(strtolower('Erebot_Module_TriggerRegistry'));
+
+        $event = $this->getMock(
+            'Erebot_Interface_Event_ChanText',
+            array(), array(), '', FALSE, FALSE
+        );
+        $event
+            ->expects($this->any())
+            ->method('getChan')
+            ->will($this->returnValue('#test'));
+
+        $this->assertTrue($this->_module->getHelp($event, $words));
     }
 }
 

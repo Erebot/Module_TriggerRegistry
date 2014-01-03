@@ -92,9 +92,8 @@ extends Erebot_Module_Base
 
         $fmt        = $this->getFormatter($chan);
         $moduleName = strtolower(get_class());
-        $nbArgs     = count($words);
 
-        if ($nbArgs == 1 && $words[0] == $moduleName) {
+        if (count($words) == 1 && $words[0] == $moduleName) {
             $msg = $fmt->_(
                 "This module does not provide any command, but ".
                 "provides a registry that other modules may use ".
