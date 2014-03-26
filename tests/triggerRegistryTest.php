@@ -17,7 +17,7 @@
 */
 
 abstract class  TextWrapper
-implements      Erebot_Interface_TextWrapper
+implements      \Erebot\Interfaces\TextWrapper
 {
     private $_chunks;
 
@@ -54,23 +54,23 @@ extends Erebot_Testenv_Module_TestCase
 {
     public function setUp()
     {
-        $this->_module = new Erebot_Module_TriggerRegistry(NULL);
+        $this->_module = new \Erebot\Module\TriggerRegistry(NULL);
         parent::setUp();
 
-        $this->_module->reload(
+        $this->_module->reloadModule(
             $this->_connection,
-            Erebot_Module_Base::RELOAD_MEMBERS
+            \Erebot\Module\Base::RELOAD_MEMBERS
         );
     }
 
     public function tearDown()
     {
-        $this->_module->unload();
+        $this->_module->unloadModule();
         parent::tearDown();
     }
 
     /**
-     * @expectedException   Erebot_InvalidValueException
+     * @expectedException   \Erebot\InvalidValueException
      */
     public function testRegisterWithInvalidValueForChannel()
     {
@@ -78,7 +78,7 @@ extends Erebot_Testenv_Module_TestCase
     }
 
     /**
-     * @expectedException   Erebot_InvalidValueException
+     * @expectedException   \Erebot\InvalidValueException
      */
     public function testUnregisterWithInvalidValueForChannel()
     {
@@ -86,7 +86,7 @@ extends Erebot_Testenv_Module_TestCase
     }
 
     /**
-     * @expectedException   Erebot_NotFoundException
+     * @expectedException   \Erebot\NotFoundException
      */
     public function testUnregisterInexistentTrigger()
     {
@@ -116,7 +116,7 @@ extends Erebot_Testenv_Module_TestCase
     }
 
     /**
-     * @expectedException   Erebot_NotFoundException
+     * @expectedException   \Erebot\NotFoundException
      */
     public function testInexistentChanTriggers()
     {
@@ -146,7 +146,7 @@ extends Erebot_Testenv_Module_TestCase
     }
 
     /**
-     * @expectedException   Erebot_NotFoundException
+     * @expectedException   \Erebot\NotFoundException
      */
     public function testInvalidToken()
     {
@@ -157,7 +157,7 @@ extends Erebot_Testenv_Module_TestCase
     }
 
     /**
-     * @expectedException   Erebot_InvalidValueException
+     * @expectedException   \Erebot\InvalidValueException
      */
     public function testInvalidToken2()
     {
@@ -173,10 +173,10 @@ extends Erebot_Testenv_Module_TestCase
             FALSE,
             FALSE
         );
-        $words = new $wordsClass(strtolower('Erebot_Module_TriggerRegistry'));
+        $words = new $wordsClass(strtolower('Erebot\\Module\\TriggerRegistry'));
 
         $event = $this->getMock(
-            'Erebot_Interface_Event_ChanText',
+            '\\Erebot\\Interfaces\\Event\\ChanText',
             array(), array(), '', FALSE, FALSE
         );
         $event

@@ -16,6 +16,8 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+namespace Erebot\Module;
+
 /**
  * \brief
  *      A module that acts as a registry of "triggers".
@@ -26,16 +28,15 @@
  * ensuring no two modules try to use the same triggers
  * at the same time.
  *
- * The main methods are Erebot_Module_TriggerRegistry::registerTriggers()
+ * The main methods are Erebot::Module::TriggerRegistry::registerTriggers()
  * which is used to register new triggers (eg. at the beginning of a game)
- * and Erebot_Module_TriggerRegistry::freeTriggers() which is used to free
+ * and Erebot::Module::TriggerRegistry::freeTriggers() which is used to free
  * triggers when they are not used anymore (eg. at the end of the game).
  */
-class   Erebot_Module_TriggerRegistry
-extends Erebot_Module_Base
+class TriggerRegistry extends \Erebot\Module\Base implements \Erebot\Interfaces\HelpEnabled
 {
     /// Array of arrays where the actual triggers are kept.
-    protected $_triggers;
+    protected $triggers;
 
     /**
      * Used to (un)register a trigger globally
@@ -47,7 +48,7 @@ extends Erebot_Module_Base
      * This method is called whenever the module is (re)loaded.
      *
      * \param int $flags
-     *      A bitwise OR of the Erebot_Module_Base::RELOAD_*
+     *      A bitwise OR of the Erebot::Module::Base::RELOAD_*
      *      constants. Your method should take proper actions
      *      depending on the value of those flags.
      *
@@ -55,40 +56,35 @@ extends Erebot_Module_Base
      *      See the documentation on individual RELOAD_*
      *      constants for a list of possible values.
      */
-    public function _reload($flags)
+    public function reload($flags)
     {
-        if ($flags & self::RELOAD_MEMBERS)
-            $this->_triggers = array(self::MATCH_ANY => array());
-
-        if ($flags & self::RELOAD_HANDLERS) {
-            $cls = $this->getFactory('!Callable');
-            $this->registerHelpMethod(new $cls(array($this, 'getHelp')));
+        if ($flags & self::RELOAD_MEMBERS) {
+            $this->triggers = array(self::MATCH_ANY => array());
         }
     }
 
     /**
      * Provides help about this module.
      *
-     * \param Erebot_Interface_Event_Base_TextMessage $event
+     * \param Erebot::Interfaces::Event::Base::TextMessage $event
      *      Some help request.
      *
-     * \param Erebot_Interface_TextWrapper $words
+     * \param Erebot::Interfaces::TextWrapper $words
      *      Parameters passed with the request. This is the same
      *      as this module's name when help is requested on the
      *      module itself (in opposition with help on a specific
      *      command provided by the module).
      */
     public function getHelp(
-        Erebot_Interface_Event_Base_TextMessage $event,
-        Erebot_Interface_TextWrapper            $words
-    )
-    {
-        if ($event instanceof Erebot_Interface_Event_Base_Private) {
+        \Erebot\Interfaces\Event\Base\TextMessage $event,
+        \Erebot\Interfaces\TextWrapper $words
+    ) {
+        if ($event instanceof \Erebot\Interfaces\Event\Base\PrivateMessage) {
             $target = $event->getSource();
-            $chan   = NULL;
-        }
-        else
+            $chan   = null;
+        } else {
             $target = $chan = $event->getChan();
+        }
 
         $fmt        = $this->getFormatter($chan);
         $moduleName = strtolower(get_class());
@@ -100,8 +96,9 @@ extends Erebot_Module_Base
                 "to register triggers (commands)."
             );
             $this->sendMessage($target, $msg);
-            return TRUE;
+            return true;
         }
+        return false;
     }
 
     /**
@@ -115,22 +112,25 @@ extends Erebot_Module_Base
      *      Look for this specific value.
      *
      * \retval bool
-     *      TRUE if the given value is contained
-     *      in the passed array, FALSE otherwise.
+     *      \b true if the given value is contained
+     *      in the passed array, \b false otherwise.
      */
-    protected function _containsRecursive(&$array, &$value)
+    protected function containsRecursive(&$array, &$value)
     {
-        if (!is_array($array))
-            return FALSE;
+        if (!is_array($array)) {
+            return false;
+        }
 
         foreach ($array as $sub) {
-            if (is_string($sub) && !strcasecmp($sub, $value))
-                return TRUE;
+            if (is_string($sub) && !strcasecmp($sub, $value)) {
+                return true;
+            }
 
-            if (is_array($sub) && $this->_containsRecursive($sub, $value))
-                return TRUE;
+            if (is_array($sub) && $this->containsRecursive($sub, $value)) {
+                return true;
+            }
         }
-        return FALSE;
+        return false;
     }
 
     /**
@@ -144,14 +144,14 @@ extends Erebot_Module_Base
      * \param string $channel
      *      Either the name of a specific IRC channel
      *      the triggers should be registered for (eg. #Erebot),
-     *      or the constant Erebot_Module_TriggerRegistry::MATCH_ANY
+     *      or the constant Erebot::Module::TriggerRegistry::MATCH_ANY
      *      to register them globally (for all channels).
      *
      * \retval mixed
      *      Either a string which acts as a key to later
      *      unregister the triggers at a later time
-     *      (see Erebot_Module_TriggerRegistry::freeTriggers),
-     *      or NULL if the triggers could not be registered
+     *      (see Erebot::Module::TriggerRegistry::freeTriggers),
+     *      or \b null if the triggers could not be registered
      *      (eg. because they conflict with other already
      *      registered triggers).
      *
@@ -163,13 +163,14 @@ extends Erebot_Module_Base
      */
     public function registerTriggers($triggers, $channel)
     {
-        if (!is_array($triggers))
+        if (!is_array($triggers)) {
             $triggers = array($triggers);
+        }
 
-        $fmt        = $this->getFormatter(FALSE);
+        $fmt        = $this->getFormatter(false);
         $translator = $fmt->getTranslator();
         if (!is_string($channel)) {
-            throw new Erebot_InvalidValueException($fmt->_('Invalid channel'));
+            throw new \Erebot\InvalidValueException($fmt->_('Invalid channel'));
         }
 
         $scopes = array(
@@ -185,12 +186,9 @@ extends Erebot_Module_Base
 
         foreach ($triggers as $trigger) {
             foreach ($scopes as $scope => $error) {
-                if (isset($this->_triggers[$scope])) {
-                    if ($this->_containsRecursive(
-                        $this->_triggers[$scope],
-                        $trigger
-                    )) {
-                        $this->_logger and $this->_logger->info(
+                if (isset($this->triggers[$scope])) {
+                    if ($this->containsRecursive($this->triggers[$scope], $trigger)) {
+                        $this->logger and $this->logger->info(
                             $fmt->render(
                                 $error,
                                 array(
@@ -199,15 +197,15 @@ extends Erebot_Module_Base
                                 )
                             )
                         );
-                        return NULL;
+                        return null;
                     }
                 }
             }
         }
 
-        $this->_triggers[$channel][] = $triggers;
-        end($this->_triggers[$channel]);
-        return $channel.' '.key($this->_triggers[$channel]);
+        $this->triggers[$channel][] = $triggers;
+        end($this->triggers[$channel]);
+        return $channel.' '.key($this->triggers[$channel]);
     }
 
     /**
@@ -216,30 +214,32 @@ extends Erebot_Module_Base
      *
      * \param string $token
      *      A key such as the ones returned by
-     *      Erebot_Module_TriggerRegistry::registerTriggers()
+     *      Erebot::Module::TriggerRegistry::registerTriggers()
      *      that is associated with the triggers to unregister.
      *
      * \note
      *      When several triggers are registered at the same time
-     *      using Erebot_Module_TriggerRegistry::registerTriggers,
+     *      using Erebot::Module::TriggerRegistry::registerTriggers,
      *      they are treated as a single group.
-     *      Calling Erebot_Module_TriggerRegistry::freeTriggers
+     *      Calling Erebot::Module::TriggerRegistry::freeTriggers
      *      with the key associated with that group unregisters
      *      all of those triggers from the registry.
      */
     public function freeTriggers($token)
     {
-        $fmt = $this->getFormatter(FALSE);
+        $fmt = $this->getFormatter(false);
 
-        if (!is_string($token) || strpos($token, ' ') === FALSE)
-            throw new Erebot_InvalidValueException($fmt->_('Invalid token'));
+        if (!is_string($token) || strpos($token, ' ') === false) {
+            throw new \Erebot\InvalidValueException($fmt->_('Invalid token'));
+        }
 
         list($chan, $pos) = explode(' ', $token);
 
-        if (!isset($this->_triggers[$chan][$pos]))
-            throw new Erebot_NotFoundException($fmt->_('No such triggers'));
+        if (!isset($this->triggers[$chan][$pos])) {
+            throw new \Erebot\NotFoundException($fmt->_('No such triggers'));
+        }
 
-        unset($this->_triggers[$chan][$pos]);
+        unset($this->triggers[$chan][$pos]);
     }
 
     /**
@@ -250,7 +250,7 @@ extends Erebot_Module_Base
      *      Either the name of a specific IRC channel
      *      to return only those triggers that were
      *      specifically registered for use in that channel,
-     *      or the constant Erebot_Module_TriggerRegistry::MATCH_ANY
+     *      or the constant Erebot::Module::TriggerRegistry::MATCH_ANY
      *      to return triggers that were registered globally.
      *
      * \retval array
@@ -259,9 +259,9 @@ extends Erebot_Module_Base
      */
     public function getChanTriggers($channel)
     {
-        if (!isset($this->_triggers[$channel])) {
-            $fmt = $this->getFormatter(FALSE);
-            throw new Erebot_NotFoundException(
+        if (!isset($this->triggers[$channel])) {
+            $fmt = $this->getFormatter(false);
+            throw new \Erebot\NotFoundException(
                 $fmt->_(
                     'No triggers found for channel "<var name="chan"/>"',
                     array('chan' => $channel)
@@ -269,7 +269,7 @@ extends Erebot_Module_Base
             );
         }
 
-        return $this->_triggers[$channel];
+        return $this->triggers[$channel];
     }
 
     /**
@@ -286,18 +286,18 @@ extends Erebot_Module_Base
      */
     public function getTriggers($token)
     {
-        $fmt = $this->getFormatter(FALSE);
+        $fmt = $this->getFormatter(false);
 
-        if (!is_string($token) || strpos($token, ' ') === FALSE)
-            throw new Erebot_InvalidValueException($fmt->_('Invalid token'));
+        if (!is_string($token) || strpos($token, ' ') === false) {
+            throw new \Erebot\InvalidValueException($fmt->_('Invalid token'));
+        }
 
         list($chan, $pos) = explode(' ', $token);
 
-        if (!isset($this->_triggers[$chan][$pos])) {
-            throw new Erebot_NotFoundException($fmt->_('No such triggers'));
+        if (!isset($this->triggers[$chan][$pos])) {
+            throw new \Erebot\NotFoundException($fmt->_('No such triggers'));
         }
 
-        return $this->_triggers[$chan][$pos];
+        return $this->triggers[$chan][$pos];
     }
 }
-
