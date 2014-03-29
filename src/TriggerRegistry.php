@@ -86,11 +86,8 @@ class TriggerRegistry extends \Erebot\Module\Base implements \Erebot\Interfaces\
             $target = $chan = $event->getChan();
         }
 
-        $fmt        = $this->getFormatter($chan);
-        $moduleName = strtolower(get_class());
-
-        if (count($words) == 1 && $words[0] == $moduleName) {
-            $msg = $fmt->_(
+        if (count($words) == 1 && $words[0] === get_called_class()) {
+            $msg = $this->getFormatter($chan)->_(
                 "This module does not provide any command, but ".
                 "provides a registry that other modules may use ".
                 "to register triggers (commands)."

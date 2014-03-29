@@ -173,7 +173,7 @@ extends Erebot_Testenv_Module_TestCase
             FALSE,
             FALSE
         );
-        $words = new $wordsClass(strtolower('Erebot\\Module\\TriggerRegistry'));
+        $words = new $wordsClass('Erebot\\Module\\TriggerRegistry');
 
         $event = $this->getMock(
             '\\Erebot\\Interfaces\\Event\\ChanText',
