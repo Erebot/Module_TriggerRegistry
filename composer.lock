@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5791b4c3c79a58bf9681aaed8fd90324",
-    "content-hash": "b1537f0d75978ecb5dc8f99d070bc459",
+    "hash": "05deb3a266477376f3028f4dc8e71a4d",
+    "content-hash": "13df9767fcd45401c5cff34a4f03ae43",
     "packages": [
         {
             "name": "erebot/api",
@@ -382,28 +382,33 @@
         },
         {
             "name": "erebot/buildenv",
-            "version": "1.1.1",
+            "version": "1.2.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Erebot/Buildenv.git",
-                "reference": "c89cc016f8d1c80779e095e6d93d1b1c6e75b24b"
+                "reference": "b16fc3a30bf2ebdf0a962d5e6af06e220a76ced5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Erebot/Buildenv/zipball/c89cc016f8d1c80779e095e6d93d1b1c6e75b24b",
-                "reference": "c89cc016f8d1c80779e095e6d93d1b1c6e75b24b",
+                "url": "https://api.github.com/repos/Erebot/Buildenv/zipball/b16fc3a30bf2ebdf0a962d5e6af06e220a76ced5",
+                "reference": "b16fc3a30bf2ebdf0a962d5e6af06e220a76ced5",
                 "shasum": ""
             },
             "require": {
+                "ext-json": "*",
                 "ext-phar": "*",
                 "ext-xsl": "*",
-                "phing/phing": ">=2.4.3",
+                "phing/phing": ">=2.9.0",
                 "php": ">=5.2.2"
+            },
+            "require-dev": {
+                "ext-bz2": "*",
+                "ext-zlib": "*"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "1.2.x-dev"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -422,7 +427,7 @@
             "keywords": [
                 "Erebot"
             ],
-            "time": "2014-01-03 11:44:34"
+            "time": "2014-12-30 11:49:48"
         },
         {
             "name": "erebot/dom",
