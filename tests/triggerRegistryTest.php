@@ -175,10 +175,7 @@ extends Erebot_Testenv_Module_TestCase
         );
         $words = new $wordsClass('Erebot\\Module\\TriggerRegistry');
 
-        $event = $this->getMock(
-            '\\Erebot\\Interfaces\\Event\\ChanText',
-            array(), array(), '', FALSE, FALSE
-        );
+        $event = $this->getMockBuilder('\\Erebot\\Interfaces\\Event\\ChanText')->getMock();
         $event
             ->expects($this->any())
             ->method('getChan')
