@@ -26,6 +26,7 @@ notifications:
     irc: "irc.iiens.net#Erebot"
 
 before_script:
+    - rm composer.lock
     - composer self-update -n
     - composer install -n
 
