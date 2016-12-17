@@ -5,9 +5,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Erebot_Module_TriggerRegistry dev-master\n"
+"Project-Id-Version: Erebot_Module_TriggerRegistry 1.0.x-dev\n"
 "Report-Msgid-Bugs-To: i18n@erebot.net\n"
-"POT-Creation-Date: 2014-01-03 00:43+0100\n"
+"POT-Creation-Date: 2016-12-17 22:36+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,37 +16,37 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 #
-# File: src/Erebot/Module/TriggerRegistry.php, line: 182
+# File: src/TriggerRegistry.php, line: 179
 msgid ""
 "A trigger named \"<var name=\"trigger\"/>\" has already been registered "
 "globally."
 msgstr ""
 #
-# File: src/Erebot/Module/TriggerRegistry.php, line: 178
+# File: src/TriggerRegistry.php, line: 175
 msgid ""
 "A trigger named \"<var name=\"trigger\"/>\" has already been registered on "
 "channel <var name=\"chan\"/>."
 msgstr ""
 #
-# File: src/Erebot/Module/TriggerRegistry.php, line: 173
+# File: src/TriggerRegistry.php, line: 170
 msgid "Invalid channel"
 msgstr ""
 #
-# File: src/Erebot/Module/TriggerRegistry.php, line: 236
-# File: src/Erebot/Module/TriggerRegistry.php, line: 293
+# File: src/TriggerRegistry.php, line: 230
+# File: src/TriggerRegistry.php, line: 289
 msgid "Invalid token"
 msgstr ""
 #
-# File: src/Erebot/Module/TriggerRegistry.php, line: 241
-# File: src/Erebot/Module/TriggerRegistry.php, line: 298
+# File: src/TriggerRegistry.php, line: 236
+# File: src/TriggerRegistry.php, line: 295
 msgid "No such triggers"
 msgstr ""
 #
-# File: src/Erebot/Module/TriggerRegistry.php, line: 267
+# File: src/TriggerRegistry.php, line: 263
 msgid "No triggers found for channel \"<var name=\"chan\"/>\""
 msgstr ""
 #
-# File: src/Erebot/Module/TriggerRegistry.php, line: 99
+# File: src/TriggerRegistry.php, line: 91
 msgid ""
 "This module does not provide any command, but provides a registry that other "
 "modules may use to register triggers (commands)."
