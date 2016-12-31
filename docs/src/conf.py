@@ -92,6 +92,7 @@ def prepare(globs, locs):
 
     # Remove extra files/folders.
     try:
+        print "Removing %s ..." % join(root, 'build')
         shutil.rmtree(join(root, 'build'))
     except OSError, e:
         print "Could not delete build folder recursively"
@@ -102,11 +103,13 @@ def prepare(globs, locs):
         join(root, 'build', 'apidoc'),
     )
     try:
+        print "Moving %s to %s ..." % (
+            join(root, '%s.tagfile.xml' % os.environ['SPHINX_PROJECT']),
+            join(root, 'build', 'apidoc', '%s.tagfile.xml' % os.environ['SPHINX_PROJECT']),
+        )
         shutil.move(
-            join(root, '%s.tagfile.xml' %
-                os.environ['SPHINX_PROJECT']),
-            join(root, 'build', 'apidoc', '%s.tagfile.xml' %
-                os.environ['SPHINX_PROJECT'])
+            join(root, '%s.tagfile.xml' % os.environ['SPHINX_PROJECT']),
+            join(root, 'build', 'apidoc', '%s.tagfile.xml' % os.environ['SPHINX_PROJECT'])
         )
     except OSError:
         print "Could not move the tagfile to its final destination"
@@ -122,6 +125,7 @@ def prepare(globs, locs):
         )
         translation = join(translation, 'LC_MESSAGES', 'generic')
         shutil.rmtree(target_dir, ignore_errors=True)
+        print "Copying %s/ to %s/ ..." % (translation, target_dir)
         shutil.copytree(translation, target_dir)
 
     # Compile translation catalogs.
@@ -130,6 +134,7 @@ def prepare(globs, locs):
             for po in fnmatch.filter(filenames, '*.po'):
                 po = join(base, po)
                 mo = po[:-3] + '.mo'
+                print "Compiling %s into %s ..." % (po, mo)
                 call([pybabel, 'compile', '-f', '--statistics',
                       '-i', po, '-o', mo])
 
@@ -144,7 +149,6 @@ def prepare(globs, locs):
     if 'html_extra_path' not in locs:
         locs['html_extra_path'] = []
     locs['html_extra_path'].append(join(root, 'build'))
-    locs['html_theme'] = 'haiku'
 
     # - I18N
     if 'locale_dirs' not in locs:
