@@ -50,7 +50,7 @@ def prepare(globs, locs):
                     stdout=PIPE).communicate()[0].strip()
     git_hash = Popen([git, 'rev-parse', 'HEAD'],
                     stdout=PIPE).communicate()[0].strip()
-    project = origin.rpartition('/')[2]
+    vendor, project = origin.rpartition(':')[2].split('/')[-2:]
     if project.endswith('.git'):
         project = project[:-4]
     os.environ['SPHINX_PROJECT'] = project
@@ -157,7 +157,8 @@ def prepare(globs, locs):
 
     if 'rst_prolog' not in locs:
         locs['rst_prolog'] = ''
-    locs['rst_prolog'] += '\n    .. _`this_commit`: https://github.com/%s/commit/%s\n' % (
+    locs['rst_prolog'] += '\n    .. _`this_commit`: https://github.com/%s/%s/commit/%s\n' % (
+        vendor,
         project,
         git_hash,
     )
