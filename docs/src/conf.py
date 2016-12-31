@@ -93,8 +93,9 @@ def prepare(globs, locs):
     # Remove extra files/folders.
     try:
         shutil.rmtree(join(root, 'build'))
-    except OSError:
-        pass
+    except OSError, e:
+        print "Could not delete build folder recursively"
+        print "Error was: %s" % str(e)
     os.mkdir(join(root, 'build'))
     shutil.move(
         join(root, 'docs', 'api', 'html'),
@@ -108,7 +109,8 @@ def prepare(globs, locs):
                 os.environ['SPHINX_PROJECT'])
         )
     except OSError:
-        pass
+        print "Could not move the tagfile to its final destination"
+        print "Error was: %s" % str(e)
 
     # Copy translations for generic docs to catalogs folder.
     gen_i18n = join(root, 'docs', 'src', 'generic', 'i18n', '.')[:-1]
