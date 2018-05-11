@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "36a72a32f899a772d871bbc02c628299",
+    "content-hash": "869d754ee238068128f76f06b9af3cc3",
     "packages": [
         {
             "name": "erebot/api",
@@ -3023,7 +3023,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.3.0"
+        "php": ">=7.0"
     },
     "platform-dev": []
 }
